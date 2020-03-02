@@ -1,3 +1,101 @@
-<form action="/restaurant" method="post">
-  <button type="submit">Submit</button>
-</form>
+<div class="container py-5">
+
+  <div class="row">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Create New Restaurant</h5>
+          <hr>
+
+          <form action="/restaurant" method="POST">
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                餐廳：
+              </label>
+              <div class="col-md-8">
+                <input type="test" name="name" class="form-control" id="name" value="">
+                {{!-- <small class="text-muted form-text">Length is availabe between 4 ~ 16</small> --}}
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Restaurant Name (English):
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="name_en" class="form-control" id="name_en" value="" placeholder="English Name">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Category:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="category" class="form-control" id="category" value="" placeholder="Category">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Image:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="image" class="form-control" id="image" value="" placeholder="Image">
+              </div>
+            </div>
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Location:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="location" class="form-control" id="location" value="" placeholder="Location">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Phone:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="phone" class="form-control" id="phone" value="" placeholder="Phone">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Google Map:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="google_map" class="form-control" id="google_map" value=""
+                  placeholder="Google Map">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Rating:
+              </label>
+              <div class="col-md-8">
+                <input type="number" name="rating" class="form-control" id="rating" value="" placeholder="Rating">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Description:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="description" class="form-control" id="description" value=""
+                  placeholder="Description">
+              </div>
+            </div>
+
+            <button class="btn btn-success" type="submit">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
