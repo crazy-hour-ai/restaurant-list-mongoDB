@@ -1,0 +1,107 @@
+<div class="container py-5">
+
+  <div class="row">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Edit Restaurant</h5>
+          <hr>
+
+          <form action="/restaurants/{{{restaurant._id}}}/edit" method="POST">
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                餐廳：
+              </label>
+              <div class="col-md-8">
+                <input type="test" name="name" class="form-control" id="name" value="{{{restaurant.name}}}">
+                {{!-- <small class="text-muted form-text">Length is availabe between 4 ~ 16</small> --}}
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Restaurant Name (English):
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="name_en" class="form-control" id="name_en" value="{{{restaurant.name_en}}}"
+                  placeholder="English Name">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Category:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="category" class="form-control" id="category" value="{{{restaurant.category}}}"
+                  placeholder="Category">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Image:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="image" class="form-control" id="image" value="{{{restaurant.image}}}"
+                  placeholder="Image">
+              </div>
+            </div>
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Location:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="location" class="form-control" id="location" value="{{{restaurant.location}}}"
+                  placeholder="Location">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Phone:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="phone" class="form-control" id="phone" value="{{{restaurant.phone}}}"
+                  placeholder="Phone">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Google Map:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="google_map" class="form-control" id="google_map"
+                  value="{{{restaurant.google_map}}}" placeholder="Google Map">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Rating:
+              </label>
+              <div class="col-md-8">
+                <input type="number" name="rating" step="0.1" min="0" max="5.0" class="form-control" id="rating"
+                  value="{{{restaurant.rating}}}" placeholder="Rating">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="length" class="col-md-3 col-form-label">
+                Description:
+              </label>
+              <div class="col-md-8">
+                <input type="text" name="description" class="form-control" id="description"
+                  value="{{{restaurant.description}}}" placeholder="Description">
+              </div>
+            </div>
+
+            <button class="btn btn-success" type="submit">Edit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

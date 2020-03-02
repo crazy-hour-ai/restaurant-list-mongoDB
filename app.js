@@ -104,6 +104,41 @@ app.post('/restaurant', (req, res) => {
   })
 })
 
+//Go to edit page
+app.get('/restaurants/:restaurant_id/edit', (req, res) => {
+  Restaurant.findById(req.params.restaurant_id)
+    .lean()
+    .exec((err, restaurantEdit) => {
+      if (err)
+        return console.log(err);
+      return res.render('edit', { restaurant: restaurantEdit });
+    })
+})
+
+//Edit restaurant
+app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+  Restaurant.findById(req.params.restaurant_id, (err, restaurantEdited) => {
+    if (err)
+      return console.log(err);
+    restaurantEdited.name = req.body.name;
+    restaurantEdited.name_en = req.body.name_en;
+    restaurantEdited.category = req.body.category;
+    restaurantEdited.image = req.body.image;
+
+    restaurantEdited.phone = req.body.phone;
+    restaurantEdited.location = req.body.location;
+    restaurantEdited.google_map = req.body.google_map;
+    restaurantEdited.rating = req.body.rating;
+    restaurantEdited.description = req.body.description;
+
+    restaurantEdited.save((err) => {
+      if (err)
+        return err;
+      return res.redirect(`/restaurants/${req.params.restaurant_id}`);
+    })
+  })
+})
+
 app.listen(port, () => {
   console.log(`Server is start on http://localhost:${port}`);
 })
