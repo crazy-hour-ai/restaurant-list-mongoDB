@@ -33,8 +33,7 @@ db.once('open', () => {
 
 //Display all restaurants
 app.get('/', (req, res) => {
-  // console.log(restaurantList.results);
-  // res.render('index', { restaurants: restaurantList.results });
+
   Restaurant.find()
     .lean()
     .find((err, restaurants) => {
@@ -51,12 +50,18 @@ app.get('/restaurants', (req, res) => {
 
 app.get('/search', (req, res) => {
   const searchKeyword = req.query.keyword;
-  const restaurantSearch = restaurantList.results.filter(
-    (restaurant) => {
-      return restaurant.name.toLowerCase().includes(searchKeyword);
-    }
-  )
-  res.render('index', { restaurants: restaurantSearch, keyword: searchKeyword })
+
+  Restaurant.find()
+    .lean()
+    .exec((err, searchRestaurant) => {
+      if (err)
+        return console.log(err);
+      const search = searchRestaurant.filter((searchResult) => {
+        // searchResult.name.toLowerCase().includes(searchKeyword) will return true or false, filter out array and save to search;
+        return searchResult.name.toLowerCase().includes(searchKeyword);
+      })
+      res.render('index', { restaurants: search, keyword: searchKeyword })
+    })
 })
 
 //Get the restaurant detail by id
@@ -142,7 +147,6 @@ app.post('/restaurants/:id/delete', (req, res) => {
         return console.log(err);
       return res.redirect('/');
     })
-
   })
 })
 
