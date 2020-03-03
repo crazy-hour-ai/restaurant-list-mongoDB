@@ -8,11 +8,8 @@
         我的餐廳清單
       </a>
       <a href="/restaurant/new"> Create </a>
-
-
     </div>
   </nav>
-
   <div class="banner"></div>
 </header>
 
@@ -41,7 +38,6 @@
       <div class="card-columns">
         {{#each restaurants}}
 
-
         <class="text-secondary">
           <div class="card mb-3">
             <img class="card-img-top" src="{{this.image}}" alt="Sababa 沙巴巴中東美食">
@@ -61,8 +57,9 @@
               <div>
                 <a href="/restaurants/{{this._id}}/edit">Edit</a>
                 <a href="/restaurants/{{this._id}}">Details</a>
-                <button type="submit">Delete</button>
-
+                <form action="/restaurants/{{this._id}}/delete" method="post">
+                  <button type="submit">Delete</button>
+                </form>
               </div>
 
             </div>
@@ -70,7 +67,6 @@
           </a>
 
           {{/each}}
-
       </div>
     </div>
   </div>

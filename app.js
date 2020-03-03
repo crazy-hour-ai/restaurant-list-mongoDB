@@ -56,19 +56,11 @@ app.get('/search', (req, res) => {
       return restaurant.name.toLowerCase().includes(searchKeyword);
     }
   )
-
   res.render('index', { restaurants: restaurantSearch, keyword: searchKeyword })
 })
 
 //Get the restaurant detail by id
 app.get('/restaurants/:restaurant_id', (req, res) => {
-  // const restaurantFilter = restaurantList.results.filter(
-  //   (restaurant) => {
-  //     return restaurant.id == req.params.restaurant_id;
-  //   }
-  // )
-  // console.log("filter", restaurantFilter);
-  // res.render('show', { restaurant: restaurantFilter[0] });
 
   Restaurant.findById(req.params.restaurant_id)
     .lean()
@@ -138,6 +130,22 @@ app.post('/restaurants/:restaurant_id/edit', (req, res) => {
     })
   })
 })
+
+//Delete restaurant
+app.post('/restaurants/:id/delete', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurantDelete) => {
+    if (err)
+      return console.log(err);
+
+    restaurantDelete.remove((err) => {
+      if (err)
+        return console.log(err);
+      return res.redirect('/');
+    })
+
+  })
+})
+
 
 app.listen(port, () => {
   console.log(`Server is start on http://localhost:${port}`);
