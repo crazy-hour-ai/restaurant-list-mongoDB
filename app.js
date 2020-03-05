@@ -43,6 +43,64 @@ app.get('/', (req, res) => {
     })
 })
 
+
+//Soring by ASC, DESC, Category & Rating
+app.get('/sort', (req, res) => {
+
+  const sortValue = req.query.sorting;
+  selectIsTrue = true;
+
+  if (sortValue === 'asc') {
+    asc = true;
+    Restaurant.find()
+      .sort({ name_en: 'asc' }
+      )
+      .lean()
+      .find((err, restaurants) => {
+        if (err)
+          return console.log(err);
+        return res.render('index', { restaurants: restaurants, asc: asc })
+      })
+  }
+  else if (sortValue === 'desc') {
+    desc = true;
+    Restaurant.find()
+      .sort({ name_en: 'desc' }
+      )
+      .lean()
+      .find((err, restaurants) => {
+        if (err)
+          return console.log(err);
+        return res.render('index', { restaurants: restaurants, desc: desc })
+      })
+  }
+  else if (sortValue === 'category') {
+    category = true;
+    Restaurant.find()
+      .sort({ category: 'asc' }
+      )
+      .lean()
+      .find((err, restaurants) => {
+        if (err)
+          return console.log(err);
+        return res.render('index', { restaurants: restaurants, category: category })
+      })
+  }
+  else if (sortValue === 'rating') {
+    rating = true;
+    Restaurant.find()
+      .sort({ rating: 'asc' }
+      )
+      .lean()
+      .find((err, restaurants) => {
+        if (err)
+          return console.log(err);
+        return res.render('index', { restaurants: restaurants, rating: rating })
+      })
+  }
+
+})
+
 //Redirect to root
 app.get('/restaurants', (req, res) => {
   return res.redirect('/');
