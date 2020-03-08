@@ -8,13 +8,25 @@ const bcrypt = require('bcryptjs');
 
 
 router.get('/login', (req, res) => {
-  res.render('login');
+
+  let errors = [];
+
+  errors.push({ message: req.flash('error') })
+  if (errors.length > 0) {
+    res.render('login', { errors })
+  }
+  // res.render('login', { errors: req.flash('error') });
+  // res.render('login');
 })
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/users/login'
+    failureRedirect: '/users/login',
+    failureFlash: true
+    // failureMessage: 'Email or Password incorrect',
+    // successFlash: 'Welcome!'
+
   })(req, res, next)
 })
 
@@ -29,12 +41,12 @@ router.post('/register', (req, res) => {
   // Add errors message reminder
   let errors = []
 
-  if (!name || !email || !password || !password2) {
+  if (!email || !password || !password2) {
     errors.push({ message: '所有欄位都是必填' })
   }
 
   if (password !== password2) {
-    errors.push({ message: '密碼輸入錯誤' })
+    errors.push({ message: 'password input wrongly' })
   }
 
   if (errors.length > 0) {
@@ -83,7 +95,6 @@ router.post('/register', (req, res) => {
         }
       })
   }
-
 })
 
 router.get('/logout', (req, res) => {

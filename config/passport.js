@@ -14,6 +14,7 @@ module.exports = passport => {
         email: email
       }).then(user => {
         if (!user) {
+          // return done(null, false, req.flash('message', 'That email is not registered'))
           return done(null, false, { message: 'That email is not registered' })
         }
 
@@ -23,6 +24,7 @@ module.exports = passport => {
             return done(null, user);
           }
           else {
+            // return done(null, false, req.flash('message', 'Email or Password incorrect'))
             return done(null, false, { message: 'Email or Password incorrect' })
           }
         })
