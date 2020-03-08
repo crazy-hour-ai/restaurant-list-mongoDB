@@ -2,15 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Restaurant = require('../models/restaurant');
 
+const { authenticated } = require('../config/auth');
 
 //Redirect to root
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
   return res.redirect('/');
 })
 
 
 //Get the restaurant detail by id
-router.get('/:restaurant_id', (req, res) => {
+router.get('/:restaurant_id', authenticated, (req, res) => {
 
   Restaurant.findById(req.params.restaurant_id)
     .lean()
@@ -23,7 +24,7 @@ router.get('/:restaurant_id', (req, res) => {
 
 
 //Go to edit page
-router.get('/:restaurant_id/edit', (req, res) => {
+router.get('/:restaurant_id/edit', authenticated, (req, res) => {
   Restaurant.findById(req.params.restaurant_id)
     .lean()
     .exec((err, restaurantEdit) => {
@@ -34,7 +35,7 @@ router.get('/:restaurant_id/edit', (req, res) => {
 })
 
 //Edit restaurant
-router.post('/:restaurant_id/edit', (req, res) => {
+router.post('/:restaurant_id/edit', authenticated, (req, res) => {
   Restaurant.findById(req.params.restaurant_id, (err, restaurantEdited) => {
     if (err)
       return console.log(err);
@@ -58,7 +59,7 @@ router.post('/:restaurant_id/edit', (req, res) => {
 })
 
 //Delete restaurant
-router.post('/:id/delete', (req, res) => {
+router.post('/:id/delete', authenticated, (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurantDelete) => {
     if (err)
       return console.log(err);

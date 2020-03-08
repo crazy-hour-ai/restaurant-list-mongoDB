@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Restaurant = require('../models/restaurant');
 
+const { authenticated } = require('../config/auth');
 //Display all restaurants
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
 
   Restaurant.find()
     .lean()
@@ -13,6 +14,6 @@ router.get('/', (req, res) => {
       return res.render('index', { restaurants: restaurants })
     })
 })
-
+  
 
 module.exports = router;

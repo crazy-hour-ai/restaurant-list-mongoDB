@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 const Restaurant = require('../models/restaurant');
 
-
+const { authenticated } = require('../config/auth');
 
 //Go to new restaurant page, cannot put /restaurants/new
-router.get('/new', (req, res) => {
+router.get('/new', authenticated, (req, res) => {
   return res.render('new');
 })
 
 //create new restaurant
-router.post('/', (req, res) => {
+router.post('/', authenticated, (req, res) => {
   const restaurant = new Restaurant({
     name: req.body.name,
     name_en: req.body.name_en,
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
 
 
 //Soring by ASC, DESC, Category & Rating
-router.get('/sort', (req, res) => {
+router.get('/sort', authenticated, (req, res) => {
 
   const sortValue = req.query.sorting;
   selectIsTrue = true;
@@ -91,7 +91,7 @@ router.get('/sort', (req, res) => {
 })
 
 
-router.get('/search', (req, res) => {
+router.get('/search', authenticated, (req, res) => {
   const searchKeyword = req.query.keyword;
 
   Restaurant.find()
