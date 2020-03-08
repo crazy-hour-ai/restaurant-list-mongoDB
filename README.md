@@ -5,9 +5,9 @@ This application is to let user search and view the restaurant details (Rating, 
 ![image](./restaurant-mongodb.png)
 
 ## Getting Started
-1. open terminal
+1. open terminal - git clone from branch --> user-login-register/flash-message
 ```
-git clone https://github.com/crazy-hour-ai/restaurant_list.git from branch user-login-register/flash-message
+git clone https://github.com/crazy-hour-ai/restaurant_list.git
 ```
 2. Initialize project
 ```
