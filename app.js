@@ -6,6 +6,10 @@ const cors = require('cors');
 
 const app = express();
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 const port = 3000;
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
@@ -62,6 +66,9 @@ app.use('', require('./routes/home'));
 app.use('/restaurants', require('./routes/restaurant'));
 app.use('/restaurant', require('./routes/restaurant-feature'));
 app.use('/users', require('./routes/user'));
+
+app.use('/auth', require('./routes/auths'))    // 把 auth route 加進來
+
 
 app.listen(port, () => {
   console.log(`Server is start on http://localhost:${port}`);
