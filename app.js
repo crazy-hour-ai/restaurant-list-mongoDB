@@ -37,7 +37,7 @@ db.once('open', () => {
 app.use('', require('./routes/home'));
 app.use('/restaurants', require('./routes/restaurant'));
 app.use('/restaurant', require('./routes/restaurant-feature'));
-
+app.use('/users', require('./routes/user'));
 
 app.listen(port, () => {
   console.log(`Server is start on http://localhost:${port}`);
