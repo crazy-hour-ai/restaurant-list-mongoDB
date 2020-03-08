@@ -14,6 +14,6 @@ router.get('/', authenticated, (req, res) => {
       return res.render('index', { restaurants: restaurants })
     })
 })
-  
+
 
 module.exports = router;

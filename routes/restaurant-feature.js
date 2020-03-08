@@ -34,7 +34,7 @@ router.post('/', authenticated, (req, res) => {
 
 
 //Soring by ASC, DESC, Category & Rating
-router.get('/sort', authenticated, (req, res) => {
+router.get('/sort', (req, res) => {
 
   const sortValue = req.query.sorting;
   selectIsTrue = true;
@@ -91,7 +91,7 @@ router.get('/sort', authenticated, (req, res) => {
 })
 
 
-router.get('/search', authenticated, (req, res) => {
+router.get('/search', (req, res) => {
   const searchKeyword = req.query.keyword;
 
   Restaurant.find()

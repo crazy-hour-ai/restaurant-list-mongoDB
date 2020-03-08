@@ -2,14 +2,21 @@
   <!-- navigation -->
   <nav class="navbar navbar-light bg-light">
     <div class="container">
+
       <a class="navbar-brand" href="/">
         <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
           width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
         我的餐廳清單
       </a>
-      {{!-- cannot put /restaurants/new --}}
-      <a href="/restaurant/new" class="btn btn-primary"> Create New Restaurant</a>
+
+      {{#if isAuthenticated}}
+      <a href="/users/logout" class="btn btn-primary"> Logout</a>
+      {{else}}
+      <a href="/users/login" class="btn btn-primary"> Login</a>
+      {{/if}}
+
     </div>
+
   </nav>
 
   <div class="banner"></div>
@@ -61,9 +68,12 @@
 
 
 <!-- restaurant list -->
+
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
+      {{!-- cannot put /restaurants/new --}}
+      <a href="/restaurant/new" class="btn btn-primary mb-3   "> Create New Restaurant</a>
       <div class="card-columns">
         {{#each restaurants}}
 
