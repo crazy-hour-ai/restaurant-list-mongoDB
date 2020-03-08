@@ -13,7 +13,7 @@ router.get('/', authenticated, (req, res) => {
 //Get the restaurant detail by id
 router.get('/:restaurant_id', authenticated, (req, res) => {
 
-  Restaurant.findById(req.params.restaurant_id)
+  Restaurant.findOne({ _id: req.params.restaurant_id, userId: req.user._id })
     .lean()
     .exec((err, restaurants) => {
       if (err)
@@ -25,7 +25,8 @@ router.get('/:restaurant_id', authenticated, (req, res) => {
 
 //Go to edit page
 router.get('/:restaurant_id/edit', authenticated, (req, res) => {
-  Restaurant.findById(req.params.restaurant_id)
+
+  Restaurant.findOne({ _id: req.params.restaurant_id, userId: req.user._id })
     .lean()
     .exec((err, restaurantEdit) => {
       if (err)
@@ -36,7 +37,8 @@ router.get('/:restaurant_id/edit', authenticated, (req, res) => {
 
 //Edit restaurant
 router.post('/:restaurant_id/edit', authenticated, (req, res) => {
-  Restaurant.findById(req.params.restaurant_id, (err, restaurantEdited) => {
+
+  Restaurant.findOne({ _id: req.params.restaurant_id, userId: req.user._id }, (err, restaurantEdited) => {
     if (err)
       return console.log(err);
     restaurantEdited.name = req.body.name;
@@ -60,7 +62,8 @@ router.post('/:restaurant_id/edit', authenticated, (req, res) => {
 
 //Delete restaurant
 router.post('/:id/delete', authenticated, (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurantDelete) => {
+
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurantDelete) => {
     if (err)
       return console.log(err);
 

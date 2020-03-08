@@ -22,7 +22,7 @@ const passport = require('passport');
 
 //mongoDB connection
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 const db = mongoose.connection;
 const Restaurant = require('./models/restaurant');

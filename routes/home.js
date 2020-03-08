@@ -6,7 +6,7 @@ const { authenticated } = require('../config/auth');
 //Display all restaurants
 router.get('/', authenticated, (req, res) => {
 
-  Restaurant.find()
+  Restaurant.find({ userId: req.user._id })
     .lean()
     .find((err, restaurants) => {
       if (err)
