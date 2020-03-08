@@ -13,11 +13,14 @@ router.get('/', authenticated, (req, res) => {
 //Get the restaurant detail by id
 router.get('/:restaurant_id', authenticated, (req, res) => {
 
-  Restaurant.findOne({ _id: req.params.restaurant_id, userId: req.user._id })
+  // Restaurant.findOne({ _id: req.params.restaurant_id, userId: req.user._id })
+  Restaurant.findById(req.params.restaurant_id)
     .lean()
     .exec((err, restaurants) => {
-      if (err)
+      if (err) {
         return console.log(err);
+      }
+
       return res.render('show', { restaurant: restaurants });
     })
 })
@@ -25,12 +28,13 @@ router.get('/:restaurant_id', authenticated, (req, res) => {
 
 //Go to edit page
 router.get('/:restaurant_id/edit', authenticated, (req, res) => {
-
   Restaurant.findOne({ _id: req.params.restaurant_id, userId: req.user._id })
+    // Restaurant.findById(req.params.restaurant_id)
     .lean()
     .exec((err, restaurantEdit) => {
       if (err)
         return console.log(err);
+
       return res.render('edit', { restaurant: restaurantEdit });
     })
 })

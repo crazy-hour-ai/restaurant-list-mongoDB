@@ -36,7 +36,7 @@ router.post('/', authenticated, (req, res) => {
 
 
 //Soring by ASC, DESC, Category & Rating
-router.get('/sort', (req, res) => {
+router.get('/sort', authenticated, (req, res) => {
 
   const sortValue = req.query.sorting;
   selectIsTrue = true;
@@ -44,6 +44,7 @@ router.get('/sort', (req, res) => {
   if (sortValue === 'asc') {
     asc = true;
     Restaurant.find()
+      // Restaurant.find({ userId: req.user._id })
       .sort({ name_en: 'asc' }
       )
       .lean()
@@ -56,6 +57,7 @@ router.get('/sort', (req, res) => {
   else if (sortValue === 'desc') {
     desc = true;
     Restaurant.find()
+      // Restaurant.find({ userId: req.user._id })
       .sort({ name_en: 'desc' }
       )
       .lean()
@@ -68,6 +70,7 @@ router.get('/sort', (req, res) => {
   else if (sortValue === 'category') {
     category = true;
     Restaurant.find()
+      // Restaurant.find({ userId: req.user._id })
       .sort({ category: 'asc' }
       )
       .lean()
@@ -80,6 +83,7 @@ router.get('/sort', (req, res) => {
   else if (sortValue === 'rating') {
     rating = true;
     Restaurant.find()
+      // Restaurant.find({ userId: req.user._id })
       .sort({ rating: 'asc' }
       )
       .lean()
