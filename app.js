@@ -24,6 +24,9 @@ app.use(cors());
 const session = require('express-session');
 const passport = require('passport');
 
+//flash message
+const flash = require('connect-flash');
+
 //mongoDB connection
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
@@ -48,6 +51,8 @@ app.use(session({
 
 }))
 
+
+
 //Use passport 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -55,9 +60,16 @@ app.use(passport.session());
 // 載入 Passport config
 require('./config/passport')(passport)
 
+//Use flash
+app.use(flash());
+
 app.use((req, res, next) => {
   res.locals.user = req.user;
   res.locals.isAuthenticated = req.isAuthenticated()
+
+  //add two flash message variables
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.warning_msg = req.flash('warning_msg');
   next();
 })
 
