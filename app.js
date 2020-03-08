@@ -15,8 +15,11 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-//mongoDB connection
 
+//user authentication 
+const session = require('express-session');
+
+//mongoDB connection
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/restaurant', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -32,7 +35,12 @@ db.once('open', () => {
 })
 
 
+app.use(session({
+  secret: 'my secret key',
+  resave: false,
+  saveUninitialized: true
 
+}))
 
 app.use('', require('./routes/home'));
 app.use('/restaurants', require('./routes/restaurant'));
